@@ -6,6 +6,7 @@ vim.bo.softtabstop = 4
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.cmd [[colorscheme desert]]
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -38,6 +39,11 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 --vim.keymap.set('n', '<C-j>', 'i\\partial{ }_{ } <ESC>T{;i')
 
 -- LUALINE
+local function debian_logo()
+  return ""  -- Nerd Font Debian logo
+end
+
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -59,23 +65,23 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_a = {debian_logo,'mode'},
+    lualine_b = {'branch', 'diff'},
     lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
+    lualine_x = { 'filetype'},
+    lualine_y = {'lsp_status'},
     lualine_z = {'location'}
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },
   tabline = {},
   winbar = {},
   inactive_winbar = {},
-  extensions = {}
+  extensions = {},
 }

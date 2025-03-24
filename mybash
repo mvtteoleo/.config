@@ -1,5 +1,5 @@
 #!bin/bash
-source ~/py/bin/activate
+alias PYTHON='source ~/py/bin/activate'
 
 alias paraguarda='~/.programmi/ParaView-5.13.0-MPI-Linux-Python3.10-x86_64/bin/paraview'
 alias balena='~/.programmi/balenaEtcher-linux-x64/balena-etcher'
@@ -11,6 +11,7 @@ MONTA=~/Sharedssd
 
 alias monta='sudo mount /dev/$MEMOCOMUNE $MONTA  && systemctl daemon-reload'
 
+alias clc='clear'
 alias la='ls -la'
 alias ll='ls -ll'
 
@@ -25,14 +26,9 @@ alias vvv='nvim ~/ricorda.md'
 
 alias v='nvim'
 
-ciao() {
-  fortune | cowsay | lolcat
-  sudo mount /dev/$MEMOCOMUNE $MONTA
-  sed -n '/# LAVORO DA FARE/,/# MATERIE/{/# MATERIE/!p}' ricorda.md
-}
 
 # SOURCE OPENFOAM
-source ~/OpenFOAM/OpenFOAM-12/etc/bashrc
+alias of12='source ~/OpenFOAM/OpenFOAM-12/etc/bashrc'
 
 # mk.
 export mkPrefix=/u/sw/
@@ -54,3 +50,8 @@ alias MAKELATEX='latexmk -pdf main.tex -outdir=build/'
 export starship=/usr/local/bin
 alias starship='/usr/local/bin/starship'
 eval "$(starship init bash)"
+ciao() {
+  sudo mount /dev/$MEMOCOMUNE $MONTA
+  LOAD_MODULES
+  PYTHON
+}

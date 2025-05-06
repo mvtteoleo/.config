@@ -20,7 +20,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
--- vim.cmd [[colorscheme delek]]
+-- vim.cmd [[colorscheme default]]
+vim.cmd [[colorscheme catppuccin-latte]]
 
 vim.opt.spell = false
 vim.wo.relativenumber = true
@@ -38,6 +39,7 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 --vim.keymap.set('n', '<C-k>', 'i$_{}^{}$<ESC>T{;i')
 --vim.keymap.set('n', '<C-j>', 'i\\partial{ }_{ } <ESC>T{;i')
 
+vim.keymap.set('t', '<ESC>', '<C-\\><C-n>')
 -- LUALINE
 require('lualine').setup {
   options = {
@@ -63,15 +65,15 @@ require('lualine').setup {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_x = {'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },

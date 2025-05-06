@@ -1,57 +1,71 @@
-#!bin/bash
-alias PYTHON='source ~/py/bin/activate'
-
-alias paraguarda='~/.programmi/ParaView-5.13.0-MPI-Linux-Python3.10-x86_64/bin/paraview'
-alias balena='~/.programmi/balenaEtcher-linux-x64/balena-etcher'
+#!/bin/bash 
+shopt -s expand_aliases
 alias nvim='~/.programmi/neovim/bin/nvim'
 
 MEMOCOMUNE=nvme0n1p10
 # p5 prima
 MONTA=~/Sharedssd
 
-alias monta='sudo mount /dev/$MEMOCOMUNE $MONTA  && systemctl daemon-reload'
 
+# Shortcuts
 alias clc='clear'
 alias la='ls -la'
 alias ll='ls -ll'
-
-alias DORMI='systemctl poweroff'
 alias bloccati='cmatrix -L'
-
 alias ..='cd ..'
-
 alias apri='xdg-open'
-
 alias vvv='nvim ~/ricorda.md'
-
+alias untarra='tar zxvf'
+alias tarr='tar zcvf'
 alias v='nvim'
 
 
 # SOURCE OPENFOAM
 alias of12='source ~/OpenFOAM/OpenFOAM-12/etc/bashrc'
 
+# Source python
+alias PYTHON='source ~/py/bin/activate'
+
 # mk.
 export mkPrefix=/u/sw/
-source ${mkPrefix}/etc/profile
-module load gcc-glibc
-alias LOAD_MODULES='cd /home/matteo/Sharedssd/università/5AnnoAer/pacs/pacs-examples && source load_modules.sh'
+
+# Functions
+LOAD_MODULES() {
+    source ${mkPrefix}/etc/profile
+    module load gcc-glibc
+    cd /home/matteo/Sharedssd/università/5AnnoAer/pacs/pacs-examples 
+    source load_modules.sh
+    cd - > /dev/null
+} 
 
 # module load package_name
 
-alias matlab24a='/home/matteodeb/.programmi/MATLAB/bin/matlab &'
-alias untarra='tar zxvf'
-alias tarr='tar zcvf'
 alias UNI='cd ~/Sharedssd/università/5AnnoAer'
+alias PACSLABS='UNI && cd pacs/pacs-Labs/Labs/2025/'
 alias CTTP='cd ~/OpenFOAM/matteodeb-12/run/CTTP'
 alias MAKELATEX='latexmk -pdf main.tex -outdir=build/'
 
 
-# starship
+# starship for cool CLI
 export starship=/usr/local/bin
 alias starship='/usr/local/bin/starship'
 eval "$(starship init bash)"
+
+
+alias monta='sudo mount "$MEMOCOMUNE" "$MONTA" && systemctl daemon-reload && echo "Memoria montata."'
+
+# Start terminal
 ciao() {
-  sudo mount /dev/$MEMOCOMUNE $MONTA
-  LOAD_MODULES
-  PYTHON
+    local qui=$PWD 
+    if ! mountpoint -q "$MONTA"; then
+        monta
+    else
+        echo "Memo già montata."
+    fi
+    LOAD_MODULES
+    PYTHON
+    cd ${qui}  > /dev/null || echo "Non riesco a tornare ${qui}"
+    echo "Moduli caricati, py-venv anche."
 }
+
+ciao

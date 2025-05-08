@@ -2,7 +2,7 @@
 shopt -s expand_aliases
 alias nvim='~/.programmi/neovim/bin/nvim'
 
-MEMOCOMUNE=nvme0n1p10
+MEMOCOMUNE=/dev/nvme0n1p10
 # p5 prima
 MONTA=~/Sharedssd
 
@@ -18,6 +18,7 @@ alias vvv='nvim ~/ricorda.md'
 alias untarra='tar zxvf'
 alias tarr='tar zcvf'
 alias v='nvim'
+alias codellama='ollama run codellama:13b'
 
 
 # SOURCE OPENFOAM
@@ -30,26 +31,39 @@ alias PYTHON='source ~/py/bin/activate'
 export mkPrefix=/u/sw/
 
 # Functions
+# module load package_name
 LOAD_MODULES() {
     source ${mkPrefix}/etc/profile
     module load gcc-glibc
+    module load fftw
+    module load boost
     cd /home/matteo/Sharedssd/università/5AnnoAer/pacs/pacs-examples 
     source load_modules.sh
     cd - > /dev/null
 } 
 
-# module load package_name
-
 alias UNI='cd ~/Sharedssd/università/5AnnoAer'
 alias PACSLABS='UNI && cd pacs/pacs-Labs/Labs/2025/'
-alias CTTP='cd ~/OpenFOAM/matteodeb-12/run/CTTP'
 alias MAKELATEX='latexmk -pdf main.tex -outdir=build/'
 
+CTTP () { 
+    UNI
+    cd cttp
+    apri teoria.pdf  || echo "Non son riuscito ad aprire il file di teoria"
+    apri books/computationalMethodsForFluidDynamics.pdf || echo "Non apro il libro."
+}
 
 # starship for cool CLI
 export starship=/usr/local/bin
 alias starship='/usr/local/bin/starship'
 eval "$(starship init bash)"
+
+expand_swap(){
+sudo fallocate -l 16G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+}
 
 
 alias monta='sudo mount "$MEMOCOMUNE" "$MONTA" && systemctl daemon-reload && echo "Memoria montata."'
@@ -63,8 +77,8 @@ ciao() {
         echo "Memo già montata."
     fi
     LOAD_MODULES
-    PYTHON
     cd ${qui}  > /dev/null || echo "Non riesco a tornare ${qui}"
+    PYTHON
     echo "Moduli caricati, py-venv anche."
 }
 

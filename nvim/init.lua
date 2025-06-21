@@ -6,6 +6,17 @@ vim.bo.softtabstop = 4
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- ENABLE CURSORLINE ONLY IN THE ACTIVE WINDOW
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+  pattern = "*",
+  command = "set cursorline"
+})
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+  pattern = "*",
+  command = "set nocursorline"
+})
+-- end cursorline
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -22,6 +33,9 @@ require("lazy").setup("plugins")
 
 -- vim.cmd [[colorscheme default]]
 vim.cmd [[colorscheme catppuccin-latte]]
+-- In normal mode, make <Esc> also clear search highlight
+vim.keymap.set('n', '<Esc>', '<Esc>:nohlsearch<CR>', { noremap = true, silent = true })
+vim.keymap.set('t', '<ESC>', '<C-\\><C-n>')
 
 vim.opt.spell = false
 vim.wo.relativenumber = true
@@ -36,10 +50,14 @@ vim.keymap.set('n', 'ò' , '$')
 -- Comodo per scorrere, zz mette a centro pg la riga
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
---vim.keymap.set('n', '<C-k>', 'i$_{}^{}$<ESC>T{;i')
---vim.keymap.set('n', '<C-j>', 'i\\partial{ }_{ } <ESC>T{;i')
 
-vim.keymap.set('t', '<ESC>', '<C-\\><C-n>')
+-- TAB MOVEMENT
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })   -- New tab
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { noremap = true, silent = true }) -- Close tab
+vim.keymap.set('n', '<leader>l',  'gt', { noremap = true })                            -- Next tab
+vim.keymap.set('n', '<leader>h',  'gT', { noremap = true })                            -- Prev tab
+-- end TAB
+--
 -- LUALINE
 require('lualine').setup {
   options = {
@@ -70,12 +88,12 @@ require('lualine').setup {
     lualine_z = {'location'}
   },
   inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
   },
   tabline = {},
   winbar = {},

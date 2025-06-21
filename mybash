@@ -15,34 +15,17 @@ alias bloccati='cmatrix -L'
 alias ..='cd ..'
 alias apri='xdg-open'
 alias vvv='nvim ~/ricorda.md'
-alias untarra='tar -zxvf'
-alias tarr='tar -zcvf'
+alias untarra='tar zxvf'
+alias tarr='tar zcvf'
 alias v='nvim'
 alias codellama='ollama run codellama:13b'
 
 
 # SOURCE OPENFOAM
-of12() {
-  local foam_bash=~/OpenFOAM/OpenFOAM-12/etc/bashrc
-  if [[ -f "$foam_bash" ]]; then
-    source "$foam_bash"
-    export LD_PATH_BACKUP=$LD_LIBRARY_PATH
-    echo "✅ OpenFOAM 12 environment loaded"
-  else
-    echo "❌ Error: $foam_bash not found"
-  fi
-}
+alias of12='source ~/OpenFOAM/OpenFOAM-12/etc/bashrc'
 
 # Source python
-PYTHON() {
-  local py_activate=~/py/bin/activate
-  if [[ -f "$py_activate" ]]; then
-    source "$py_activate"
-    echo "✅ Python venv loaded"
-  else
-    echo "❌ Error: $py_activate not found"
-  fi
-}
+alias PYTHON='source ~/py/bin/activate'
 
 # mk.
 export mkPrefix=/u/sw/
@@ -70,12 +53,16 @@ CTTP () {
     apri books/computationalMethodsForFluidDynamics.pdf || echo "Non apro il libro."
 }
 
+# starship for cool CLI
+export starship=/usr/local/bin
+alias starship='/usr/local/bin/starship'
+eval "$(starship init bash)"
+
 expand_swap(){
 sudo fallocate -l 16G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
-sudo swa
-pon /swapfile
+sudo swapon /swapfile
 }
 
 
@@ -89,17 +76,10 @@ ciao() {
     else
         echo "Memo già montata."
     fi
-    # LOAD_MODULES
-    # cd ${qui}  > /dev/null || echo "Non riesco a tornare ${qui}"
-    of12
+    LOAD_MODULES
+    cd ${qui}  > /dev/null || echo "Non riesco a tornare ${qui}"
     PYTHON
     echo "Moduli caricati, py-venv anche."
-    cd ${qui}  > /dev/null || echo "Non riesco a tornare ${qui}"
 }
 
-## starship for cool CLI
-export starship=/usr/local/bin
-alias starship='/usr/local/bin/starship'
-eval "$(starship init bash)"
-
-# ciao
+ciao

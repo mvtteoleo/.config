@@ -20,12 +20,28 @@ alias tarr='tar zcvf'
 alias v='nvim'
 alias codellama='ollama run codellama:13b'
 
-
 # SOURCE OPENFOAM
-alias of12='source ~/OpenFOAM/OpenFOAM-12/etc/bashrc'
+of12() {
+  local foam_bash=~/OpenFOAM/OpenFOAM-12/etc/bashrc
+  if [[ -f "$foam_bash" ]]; then
+    source "$foam_bash"
+    export LD_PATH_BACKUP=$LD_LIBRARY_PATH
+    echo "✅ OpenFOAM 12 environment loaded"
+  else
+    echo "❌ Error: $foam_bash not found"
+  fi
+}
 
 # Source python
-alias PYTHON='source ~/py/bin/activate'
+PYTHON() {
+  local py_activate=~/py/bin/activate
+  if [[ -f "$py_activate" ]]; then
+    source "$py_activate"
+    echo "✅ Python venv loaded"
+  else
+    echo "❌ Error: $py_activate not found"
+  fi
+}
 
 # mk.
 export mkPrefix=/u/sw/
@@ -33,6 +49,7 @@ export mkPrefix=/u/sw/
 # Functions
 # module load package_name
 LOAD_MODULES() {
+    local qui=$PWD 
     source ${mkPrefix}/etc/profile
     module load gcc-glibc
     module load fftw
@@ -40,6 +57,7 @@ LOAD_MODULES() {
     cd /home/matteo/Sharedssd/università/5AnnoAer/pacs/pacs-examples 
     source load_modules.sh
     cd - > /dev/null
+    cd ${qui}  > /dev/null || echo "Non riesco a tornare ${qui}"
 } 
 
 alias UNI='cd ~/Sharedssd/università/5AnnoAer'
@@ -76,10 +94,9 @@ ciao() {
     else
         echo "Memo già montata."
     fi
-    LOAD_MODULES
-    cd ${qui}  > /dev/null || echo "Non riesco a tornare ${qui}"
+    # LOAD_MODULES
     PYTHON
-    echo "Moduli caricati, py-venv anche."
+    of12
 }
 
 ciao

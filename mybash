@@ -83,20 +83,30 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 }
 
+clean() {
+if [ -n "$LD_LIBRARY_PATH" ]; then
+    echo  -e "⚠️  Warning: LD_LIBRARY_PATH is set to : (\n $LD_LIBRARY_PATH \n), moving it to LD_PATH_BACKUP"
+    export LD_PATH_BACKUP=$LD_LIBRARY_PATH
+    export LD_PATH_BACKUP=""
+    echo "✅ Environment cleaned"
+else
+    echo "✅ Already clean environment"
+fi
+}
 
 alias monta='sudo mount "$MEMOCOMUNE" "$MONTA" && systemctl daemon-reload && echo "Memoria montata."'
 
 # Start terminal
 ciao() {
-    local qui=$PWD 
     if ! mountpoint -q "$MONTA"; then
         monta
     else
         echo "Memo già montata."
     fi
     # LOAD_MODULES
-    PYTHON
     of12
+    PYTHON
+    echo "Moduli caricati, py-venv anche."
 }
 
-ciao
+# ciao

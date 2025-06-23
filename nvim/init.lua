@@ -40,6 +40,15 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 --vim.keymap.set('n', '<C-j>', 'i\\partial{ }_{ } <ESC>T{;i')
 
 vim.keymap.set('t', '<ESC>', '<C-\\><C-n>')
+-- TAB MOVEMENT
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })   -- New tab
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { noremap = true, silent = true }) -- Close tab
+vim.keymap.set('n', '<leader>l',  'gt', { noremap = true })                            -- Next tab
+vim.keymap.set('n', '<leader>h',  'gT', { noremap = true })                            -- Prev tab
+vim.keymap.set('n', '<leader>nt', ':tabnew term://bash<CR>', { noremap = true, silent = true })   -- Term in new tab
+
+-- end TAB
+--
 -- LUALINE
 require('lualine').setup {
   options = {

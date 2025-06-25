@@ -21,7 +21,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 -- vim.cmd [[colorscheme default]]
-vim.cmd [[colorscheme catppuccin-latte]]
+-- vim.cmd [[colorscheme catppuccin-latte]]
+vim.cmd [[colorscheme desert]]
 
 vim.opt.spell = false
 vim.wo.relativenumber = true
@@ -39,7 +40,7 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 --vim.keymap.set('n', '<C-k>', 'i$_{}^{}$<ESC>T{;i')
 --vim.keymap.set('n', '<C-j>', 'i\\partial{ }_{ } <ESC>T{;i')
 
-vim.keymap.set('t', '<ESC>', '<C-\\><C-n>')
+vim.keymap.set('n', '<ESC>', ':noh<CR>', { silent = true })
 -- TAB MOVEMENT
 vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { noremap = true, silent = true })   -- New tab
 vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { noremap = true, silent = true }) -- Close tab
@@ -48,47 +49,6 @@ vim.keymap.set('n', '<leader>h',  'gT', { noremap = true })                     
 vim.keymap.set('n', '<leader>nt', ':tabnew term://bash<CR>', { noremap = true, silent = true })   -- Term in new tab
 
 -- end TAB
---
--- LUALINE
-require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
-    ignore_focus = {},
-    always_divide_middle = true,
-    always_show_tabline = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 100,
-      tabline = 100,
-      winbar = 100,
-    }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
-}
+
+
 

@@ -94,7 +94,11 @@ else
 fi
 }
 
-alias monta='sudo mount "$MEMOCOMUNE" "$MONTA" && systemctl daemon-reload && echo "Memoria montata."'
+monta(){
+    sudo mount $MEMOCOMUNE $MONTA 
+    systemctl daemon-reload 
+    echo "✅ Memoria montata."
+}
 
 # Start terminal
 ciao() {

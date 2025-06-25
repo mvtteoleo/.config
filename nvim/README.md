@@ -13,6 +13,8 @@ export PATH="~/programmi/neovim/bin:$PATH"
 ```
 
 This way install it in /usr/local, 
+- Ripgrep per telescope grep_string
+    - ```sudo apt install ripgrep```
 - Pyright per lsp python:
     - ```pip install pyright``` dovrebbe bastare
 - Installare con nvm treesetter-CLI

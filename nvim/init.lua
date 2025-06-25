@@ -29,11 +29,11 @@ vim.wo.relativenumber = true
 vim.wo.number = true
 vim.wo.wrap = true
 vim.wo.linebreak = true
---Chiudi parentesi
-vim.keymap.set('i', '(' , '()<ESC><ESC>i')
-vim.keymap.set('i', '{' , '{}<ESC><ESC>i')
-vim.keymap.set('i', '[' , '[]<ESC><ESC>i')
-vim.keymap.set('n', 'ò' , '$')
+-- -- Chiudi parentesi
+-- vim.keymap.set('i', '(' , '()<ESC><ESC>i')
+-- vim.keymap.set('i', '{' , '{}<ESC><ESC>i')
+-- vim.keymap.set('i', '[' , '[]<ESC><ESC>i')
+-- vim.keymap.set('n', 'ò' , '$')
 -- Comodo per scorrere, zz mette a centro pg la riga
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')

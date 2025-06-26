@@ -8,7 +8,7 @@ return {
     },
     {		"williamboman/mason-lspconfig.nvim",
         config = function()
-            require("mason-lspconfig").setup({ ensure_installed = { "lua_ls",  "fortls", "autotools_ls", "clangd", "foam_ls", "pyright", "harper_ls", "textlsp", "texlab" }
+            require("mason-lspconfig").setup({ ensure_installed = { "lua_ls",  "fortls", "autotools_ls", "clangd", "foam_ls", "pyright", "textlsp", "texlab" }
             })
         end
     },

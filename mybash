@@ -108,9 +108,8 @@ ciao() {
         echo "Memo già montata."
     fi
     # LOAD_MODULES
-    of12
-    PYTHON
-    echo "Moduli caricati, py-venv anche."
+    # of12
+    # PYTHON
 }
 
 # ciao

@@ -51,4 +51,3 @@ vim.keymap.set('n', '<leader>nt', ':tabnew term://bash<CR>', { noremap = true, s
 -- end TAB
 
 
-

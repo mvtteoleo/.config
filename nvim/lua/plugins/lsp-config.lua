@@ -28,7 +28,7 @@ return {
             lspconfig.autotools_ls.setup({})
             lspconfig.clangd.setup({
                 init_options = {
-                    fallbackFlags = {'--std=c++20'}
+                    fallbackFlags = {'--std=c++23'}
                 },
             })
             lspconfig.foam_ls.setup({})
@@ -36,7 +36,10 @@ return {
             lspconfig.mojo.setup({})
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+            -- Definition in a new split window
+            vim.keymap.set('n', 'gd', ":vsplit | lua vim.lsp.buf.definition()<CR>", { noremap=true, silent=true})
+            -- Definition in place
+            vim.keymap.set('n', 'gh', vim.lsp.buf.definition, {})
         end
     },
 }

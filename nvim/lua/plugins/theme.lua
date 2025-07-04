@@ -3,7 +3,7 @@ return
     {
   "nvim-tree/nvim-web-devicons",
       version=false,
-  lazy = true,
+  lazy = false,
 },
     -- lazy
     {

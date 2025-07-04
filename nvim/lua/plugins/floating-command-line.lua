@@ -13,14 +13,14 @@ return{
        },
        config = function ()
            require("noice").setup({
-               lsp = {
-                   -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-                   override = {
-                       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                       ["vim.lsp.util.stylize_markdown"] = true,
-                       ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-                   },
-               },
+--             lsp = {
+--                 -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+--                 override = {
+--                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+--                     ["vim.lsp.util.stylize_markdown"] = true,
+--                     ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+--                 },
+--             },
                -- you can enable a preset for easier configuration
                presets = {
                    bottom_search = true, -- use a classic bottom cmdline for search
@@ -31,7 +31,7 @@ return{
                },
                notify = {
                    -- Set how long notifications stay visible (in milliseconds)
-                   timeout = 2000,  -- example: 2000ms = 2 seconds
+                   timeout = 500,  -- example: 2000ms = 2 seconds
                    -- You can also configure the stages (animation)
                    stages = "fade_in_slide_out", -- default, or "fade", "slide", "static"
                },

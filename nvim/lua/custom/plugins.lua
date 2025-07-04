@@ -20,6 +20,7 @@ local plugins = {
         "clangd",
         "clang-format",
         "codelldb",
+        "cpptools",
       }
     }
   }

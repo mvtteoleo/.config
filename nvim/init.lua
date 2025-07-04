@@ -6,6 +6,7 @@ vim.bo.softtabstop = 4
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.o.cursorline = true
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -21,8 +22,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 -- vim.cmd [[colorscheme default]]
--- vim.cmd [[colorscheme catppuccin-latte]]
-vim.cmd [[colorscheme desert]]
+vim.cmd [[colorscheme catppuccin-latte]]
+-- vim.cmd [[colorscheme desert]]
 
 vim.opt.spell = false
 vim.wo.relativenumber = true
@@ -50,4 +51,7 @@ vim.keymap.set('n', '<leader>nt', ':tabnew term://bash<CR>', { noremap = true, s
 
 -- end TAB
 
+vim.keymap.set("n", "<leader>tt", function()
+  require("todo_popup").show()
+end, { desc = "Show matching TODO popup" })
 

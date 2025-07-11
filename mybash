@@ -1,4 +1,7 @@
 #!/bin/bash 
+# # Set time and date as the bios
+# timedatectl set-local-rtc 1
+
 shopt -s expand_aliases
 alias nvim='~/.programmi/neovim/bin/nvim'
 
@@ -19,6 +22,7 @@ alias untarra='tar zxvf'
 alias tarr='tar zcvf'
 alias v='nvim'
 alias codellama='ollama run codellama:13b'
+alias nd='nix develop'
 
 # SOURCE OPENFOAM
 of12() {
@@ -64,9 +68,11 @@ alias UNI='cd ~/Sharedssd/università/5AnnoAer'
 alias PACSLABS='UNI && cd pacs/pacs-Labs/Labs/2025/'
 alias MAKELATEX='latexmk -pdf main.tex -outdir=build/'
 
+export CURR_ASS=/home/matteo/Sharedssd/università/5AnnoAer/cttp/my_assignments/5
 CTTP () { 
     UNI
     cd cttp
+    # apri my_assignments/assignments.pdf
     apri teoria.pdf  || echo "Non son riuscito ad aprire il file di teoria"
     apri books/computationalMethodsForFluidDynamics.pdf || echo "Non apro il libro."
 }

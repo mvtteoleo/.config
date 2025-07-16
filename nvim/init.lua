@@ -22,8 +22,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 -- vim.cmd [[colorscheme default]]
-vim.cmd [[colorscheme catppuccin-latte]]
+-- vim.cmd [[colorscheme catppuccin-latte]]
 -- vim.cmd [[colorscheme desert]]
+vim.cmd [[ colorscheme unokai]]
 
 vim.opt.spell = false
 vim.wo.relativenumber = true

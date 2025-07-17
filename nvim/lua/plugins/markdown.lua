@@ -26,6 +26,7 @@ return{
                 highlight = { enable = true }
             })
         end
-    }
+    }, 
+    {"ellisonleao/glow.nvim", config = true, cmd = "Glow"}
 
 }

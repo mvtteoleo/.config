@@ -8,7 +8,7 @@ return {
     },
     {		"williamboman/mason-lspconfig.nvim",
         config = function()
-            require("mason-lspconfig").setup({ ensure_installed = { "lua_ls",  "fortls", "autotools_ls", "clangd", "foam_ls", "pyright", "textlsp", "texlab" }
+            require("mason-lspconfig").setup({ ensure_installed = { "lua_ls",  "autotools_ls", "clangd", "pyright", "textlsp", "texlab" }
             })
         end
     },
@@ -23,17 +23,13 @@ return {
             lspconfig.textlsp.setup({})
             lspconfig.texlab.setup({})
 
-            lspconfig.fortls.setup({})
-
             lspconfig.autotools_ls.setup({})
             lspconfig.clangd.setup({
                 init_options = {
                     fallbackFlags = {'--std=c++23'}
                 },
             })
-            lspconfig.foam_ls.setup({})
             lspconfig.pyright.setup({})
-            lspconfig.mojo.setup({})
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
             -- Definition in a new split window

@@ -19,6 +19,7 @@ alias untarra='tar zxvf'
 alias tarr='tar zcvf'
 alias v='nvim'
 alias codellama='ollama run codellama:13b'
+alias nd='nix develop'
 
 # SOURCE OPENFOAM
 of12() {
@@ -61,7 +62,8 @@ LOAD_MODULES() {
 } 
 
 alias UNI='cd ~/Sharedssd/università/5AnnoAer'
-alias PACSLABS='UNI && cd pacs/pacs-Labs/Labs/2025/'
+alias TESI='cd ~/Sharedssd/università/tesi'
+alias PACS_PROJ='cd ~/Sharedssd/università/5AnnoAer/pacs/PACS_PROJ && nd'
 alias MAKELATEX='latexmk -pdf main.tex -outdir=build/'
 
 # starship for cool CLI
@@ -95,6 +97,8 @@ monta(){
 
 # Start terminal
 ciao() {
+    echo "Ciao tremenda bellezza"
+    
     if ! mountpoint -q "$MONTA"; then
         monta
     else
@@ -104,5 +108,3 @@ ciao() {
     # of12
     # PYTHON
 }
-
-# ciao

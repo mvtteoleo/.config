@@ -5,6 +5,7 @@ vim.opt.expandtab = true
 vim.bo.softtabstop = 4
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.opt.virtualedit = 'all'
 
 vim.o.cursorline = true
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -45,16 +46,17 @@ vim.keymap.set('n', '<leader>h',  'gT', { noremap = true })                     
 
 -- theme & transparency
 vim.cmd.colorscheme("unokai")
+
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
-vim.opt.scrolloff = 10                             -- Keep 10 lines above/below cursor 
+vim.opt.scrolloff = 8                             -- Keep 10 lines above/below cursor 
 vim.opt.sidescrolloff = 8                          -- Keep 8 columns left/right of cursor
 
 -- Search settings
 vim.opt.ignorecase = true                          -- Case insensitive search
 vim.opt.smartcase = true                           -- Case sensitive if uppercase in search
-vim.opt.hlsearch = false                           -- Don't highlight search results 
+vim.opt.hlsearch = true                            -- Don't highlight search results 
 vim.opt.incsearch = true                           -- Show matches as you type
 
 -- Visual settings
